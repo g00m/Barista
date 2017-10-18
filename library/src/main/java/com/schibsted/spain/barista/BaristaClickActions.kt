@@ -1,9 +1,7 @@
 package com.schibsted.spain.barista
 
-import android.support.test.espresso.AmbiguousViewMatcherException
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.Espresso.pressBack
-import android.support.test.espresso.NoMatchingViewException
 import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.action.ViewActions.scrollTo
 import android.support.test.espresso.matcher.ViewMatchers.*
@@ -43,14 +41,14 @@ object BaristaClickActions {
         try {
             try {
                 clickDisplayedView(viewMatcher, spyHandler)
-            } catch (exception: NoMatchingViewException) {
+            } catch (fistError: RuntimeException) {
                 try {
                     scrollAndClickView(viewMatcher, spyHandler)
-                } catch (otraException: AmbiguousViewMatcherException) {
+                } catch (secondError: RuntimeException) {
                     scrollAndClickDisplayedView(viewMatcher, spyHandler)
                 }
             }
-        } catch (otraMas: Exception) {
+        } catch (fatalError: RuntimeException) {
             spyHandler.resendFirstError("Could not click view ${viewMatcher.description()}")
         }
     }
