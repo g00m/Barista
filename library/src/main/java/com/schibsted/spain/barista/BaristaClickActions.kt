@@ -41,7 +41,7 @@ object BaristaClickActions {
         try {
             try {
                 clickDisplayedView(viewMatcher, spyHandler)
-            } catch (fistError: RuntimeException) {
+            } catch (firstError: RuntimeException) {
                 try {
                     scrollAndClickView(viewMatcher, spyHandler)
                 } catch (secondError: RuntimeException) {
